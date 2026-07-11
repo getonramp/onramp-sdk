@@ -1,0 +1,48 @@
+{
+  "name": "@onramp-sdk/web",
+  "version": "0.5.4",
+  "description": "OnRamp onboarding funnel analytics for web apps - track steps, see where users drop off.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getonramp/onramp-sdk.git",
+    "directory": "packages/sdk-web"
+  },
+  "homepage": "https://getonramp.dev/docs/sdks/web",
+  "bugs": { "url": "https://github.com/getonramp/onramp-sdk/issues" },
+  "keywords": [
+    "analytics",
+    "onboarding",
+    "funnel",
+    "web"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc && pnpm build:snippet",
+    "build:snippet": "esbuild src/snippet.ts --bundle --minify --format=iife --platform=browser --outfile=dist/onramp.min.js",
+    "prepublishOnly": "tsc && pnpm build:snippet",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@onramp-sdk/core": "workspace:*",
+    "@onramp-sdk/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "typescript": "^5.5.0"
+  }
+}

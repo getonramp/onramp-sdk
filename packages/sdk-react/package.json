@@ -1,0 +1,65 @@
+{
+  "name": "@onramp-sdk/react",
+  "version": "0.3.4",
+  "description": "OnRamp onboarding funnel analytics for React & Next.js - track steps, see where users drop off.",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getonramp/onramp-sdk.git",
+    "directory": "packages/sdk-react"
+  },
+  "homepage": "https://getonramp.dev/docs/sdks/react",
+  "bugs": { "url": "https://github.com/getonramp/onramp-sdk/issues" },
+  "keywords": [
+    "react",
+    "nextjs",
+    "next",
+    "analytics",
+    "onboarding",
+    "funnel"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./next": {
+      "types": "./dist/next.d.ts",
+      "import": "./dist/next.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@onramp-sdk/core": "workspace:*",
+    "@onramp-sdk/shared": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "next": ">=13.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/react": "^18.0.0",
+    "react": "^18.3.0",
+    "next": "^14.0.0"
+  }
+}

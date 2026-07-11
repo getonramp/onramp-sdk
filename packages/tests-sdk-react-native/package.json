@@ -1,0 +1,25 @@
+{
+  "name": "@onramp-sdk/tests-react-native",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Integration tests for @onramp-sdk/react-native",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@onramp-sdk/react-native": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^2.0.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "@testing-library/react": "^16.0.0",
+    "jsdom": "^25.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "typescript": "^5.5.0"
+  }
+}

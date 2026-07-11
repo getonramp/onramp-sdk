@@ -1,0 +1,36 @@
+{
+  "name": "@onramp-sdk/shared",
+  "version": "0.4.1",
+  "description": "Shared event schema and types for OnRamp SDKs.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getonramp/onramp-sdk.git",
+    "directory": "packages/shared"
+  },
+  "homepage": "https://getonramp.dev/docs/concepts",
+  "bugs": { "url": "https://github.com/getonramp/onramp-sdk/issues" },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

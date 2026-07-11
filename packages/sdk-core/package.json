@@ -1,0 +1,46 @@
+{
+  "name": "@onramp-sdk/core",
+  "version": "0.6.2",
+  "description": "Platform-agnostic core client for OnRamp onboarding funnel analytics - batching, retry, event schema.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getonramp/onramp-sdk.git",
+    "directory": "packages/sdk-core"
+  },
+  "homepage": "https://getonramp.dev/docs/concepts",
+  "bugs": { "url": "https://github.com/getonramp/onramp-sdk/issues" },
+  "keywords": [
+    "analytics",
+    "onboarding",
+    "funnel"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@onramp-sdk/shared": "workspace:*",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/node": "^20.0.0"
+  }
+}

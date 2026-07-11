@@ -1,0 +1,40 @@
+name: Bug report
+description: Report a reproducible problem in an OnRamp SDK or the public application
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Please remove API keys, personal data, and production payloads before submitting.
+  - type: input
+    id: package
+    attributes:
+      label: SDK or component
+      placeholder: "@onramp-sdk/react-native"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Include the smallest code sample or repository that reproduces the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
