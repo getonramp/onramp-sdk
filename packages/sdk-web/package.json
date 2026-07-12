@@ -1,7 +1,7 @@
 {
   "name": "@onramp-sdk/web",
   "version": "0.5.4",
-  "description": "OnRamp onboarding funnel analytics for web apps - track steps, see where users drop off.",
+  "description": "OnRamp Analytics SDK for web apps - track onboarding steps and see where users drop off.",
   "license": "MIT",
   "repository": {
     "type": "git",

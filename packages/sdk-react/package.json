@@ -1,7 +1,7 @@
 {
   "name": "@onramp-sdk/react",
   "version": "0.3.4",
-  "description": "OnRamp onboarding funnel analytics for React & Next.js - track steps, see where users drop off.",
+  "description": "OnRamp Analytics SDK for React & Next.js - track onboarding steps and see where users drop off.",
   "license": "MIT",
   "type": "module",
   "repository": {

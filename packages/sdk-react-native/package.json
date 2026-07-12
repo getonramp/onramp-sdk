@@ -1,7 +1,7 @@
 {
   "name": "@onramp-sdk/react-native",
   "version": "0.7.2",
-  "description": "OnRamp onboarding funnel analytics for React Native - track steps, see where users drop off. Expo-compatible.",
+  "description": "OnRamp Analytics SDK for React Native - track onboarding steps and see where users drop off. Expo-compatible.",
   "license": "MIT",
   "repository": {
     "type": "git",

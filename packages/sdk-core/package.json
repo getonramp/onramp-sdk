@@ -1,7 +1,7 @@
 {
   "name": "@onramp-sdk/core",
   "version": "0.6.2",
-  "description": "Platform-agnostic core client for OnRamp onboarding funnel analytics - batching, retry, event schema.",
+  "description": "Platform-agnostic core client for OnRamp Analytics onboarding funnels - batching, retry, event schema.",
   "license": "MIT",
   "repository": {
     "type": "git",

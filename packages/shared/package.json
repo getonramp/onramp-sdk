@@ -1,7 +1,7 @@
 {
   "name": "@onramp-sdk/shared",
   "version": "0.4.1",
-  "description": "Shared event schema and types for OnRamp SDKs.",
+  "description": "Shared event schema and types for OnRamp Analytics SDKs.",
   "license": "MIT",
   "repository": {
     "type": "git",
