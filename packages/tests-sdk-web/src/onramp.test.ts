@@ -242,9 +242,27 @@ describe('OnRamp web SDK', () => {
       expect(props).not.toHaveProperty('_utm_medium')
     })
 
-    it('attaches no attribution on a clean direct visit', async () => {
+    it('labels a clean new-session visit as direct', async () => {
       const props = await firstEventProps('')
-      expect(props ?? {}).not.toHaveProperty('_utm_source')
+      expect(props).toMatchObject({ _referrer: 'direct' })
+      expect(props).not.toHaveProperty('_utm_source')
+    })
+
+    it('does not relabel a resumed session as direct after attribution is consumed', async () => {
+      const first = await freshOnRamp()
+      first.init({ apiKey: 'test-key' })
+      first.step('welcome')
+      await first.flush()
+      expect(JSON.parse(mockFetch.mock.calls[0][1].body as string).events[0].properties)
+        .toMatchObject({ _referrer: 'direct' })
+
+      mockFetch.mockClear()
+      const resumed = await freshOnRamp()
+      resumed.init({ apiKey: 'test-key' })
+      resumed.step('profile')
+      await resumed.flush()
+      const properties = JSON.parse(mockFetch.mock.calls[0][1].body as string).events[0].properties
+      expect(properties ?? {}).not.toHaveProperty('_referrer')
     })
   })
 

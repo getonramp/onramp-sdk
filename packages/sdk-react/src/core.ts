@@ -228,7 +228,8 @@ export const OnRamp = {
 
     // Resume the previous session if the user returned within the timeout window.
     const stored = loadSession()
-    if (stored && Date.now() - stored.lastActive < sessionTimeoutMs) {
+    const isNewSession = !(stored && Date.now() - stored.lastActive < sessionTimeoutMs)
+    if (!isNewSession && stored) {
       currentSessionId = stored.id
       stepCounter = stored.stepCounter
       lastActive = stored.lastActive
@@ -287,6 +288,21 @@ export const OnRamp = {
         }
       } catch {
         // sessionStorage unavailable or corrupt - no prior attribution to restore
+      }
+    }
+
+    // Typed URLs, bookmarks, and other unattributed entries have no browser
+    // referrer. Label only a genuinely new session as direct; doing this on
+    // every hard navigation would incorrectly overwrite prior attribution.
+    if (!pendingReferrer && !pendingUtm && isNewSession) {
+      pendingReferrer = 'direct'
+      try {
+        sessionStorage.setItem(
+          PENDING_ACQUISITION_KEY,
+          JSON.stringify({ referrer: pendingReferrer, utm: null })
+        )
+      } catch {
+        // sessionStorage unavailable - direct still attaches in this page load
       }
     }
 

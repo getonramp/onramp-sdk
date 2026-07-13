@@ -162,7 +162,7 @@ function utmFromClickId(params: URLSearchParams): Record<string, string> | null 
   return null
 }
 
-function captureAcquisition(): void {
+function captureAcquisition(isNewSession: boolean): void {
   pendingReferrer = null
   pendingUtm = null
 
@@ -195,7 +195,16 @@ function captureAcquisition(): void {
   }
 
   const raw = safeSessionGet(PENDING_ACQUISITION_KEY)
-  if (!raw) return
+  if (!raw) {
+    // A browser omits document.referrer for typed URLs, bookmarks, and other
+    // unattributed entries. Record that explicitly on the first event of a
+    // genuinely new session so Direct appears alongside named referrers.
+    if (isNewSession) pendingReferrer = 'direct'
+    if (pendingReferrer) {
+      safeSessionSet(PENDING_ACQUISITION_KEY, JSON.stringify({ referrer: pendingReferrer, utm: null }))
+    }
+    return
+  }
   try {
     const stored = JSON.parse(raw) as { referrer: string | null; utm: Record<string, string> | null }
     pendingReferrer = stored.referrer
@@ -214,7 +223,8 @@ export const OnRamp = {
 
     // Resume previous session if user returned within the timeout window
     const stored = loadSession()
-    if (stored && Date.now() - stored.lastActive < sessionTimeoutMs) {
+    const isNewSession = !(stored && Date.now() - stored.lastActive < sessionTimeoutMs)
+    if (!isNewSession && stored) {
       currentSessionId = stored.id
       stepCounter = stored.stepCounter
       lastActive = stored.lastActive
@@ -222,7 +232,7 @@ export const OnRamp = {
       rotateSession()
     }
 
-    captureAcquisition()
+    captureAcquisition(isNewSession)
 
     client = new OnRampClient({
       apiKey: config.apiKey,
