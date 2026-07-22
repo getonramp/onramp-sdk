@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "OnRamp Expo Onboarding Example",
+    "slug": "onramp-expo-onboarding-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light"
+  }
+}
